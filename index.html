@@ -127,6 +127,42 @@
       text-underline-offset: 3px;
     }
 
+    /* ===== FAN IMAGE DISPLAY ===== */
+    .cta-fan-card { padding-top: 0 !important; overflow: hidden; }
+    .fan-wrap {
+      position: relative;
+      height: 230px;
+      margin: 0 -20px 28px -20px;
+      background: #e8e8e8;
+    }
+    .f-slot {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .f-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .f-center {
+      width: 58%; height: 210px;
+      left: 50%; top: 12px;
+      transform: translateX(-50%);
+      z-index: 3;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    }
+    .f-left {
+      width: 52%; height: 195px;
+      right: 44%; top: 20px;
+      transform: rotate(-22deg);
+      transform-origin: bottom right;
+      z-index: 1;
+    }
+    .f-right {
+      width: 52%; height: 195px;
+      left: 44%; top: 20px;
+      transform: rotate(22deg);
+      transform-origin: bottom left;
+      z-index: 1;
+    }
+
     /* ===== SECTION HEADINGS ===== */
     .section-heading-black {
       font-size: 26px;
@@ -391,21 +427,22 @@
   </section>
 
   <!-- ===================================================
-       SECTION 2 — BANNER IMAGES
-  =================================================== -->
-  <section class="s-banner">
-    <div class="banner-row">
-      <img src="images/Banner%20image%201%20reference.jpeg" alt="Body recomposition result" />
-      <img src="images/Banner%20image%202%20reference.jpeg" alt="Body recomposition result" />
-    </div>
-  </section>
-
-  <!-- ===================================================
-       SECTION 3 — FIRST CTA
+       SECTION 3 — FIRST CTA (with fan images)
   =================================================== -->
   <section class="s-cta">
     <div class="container">
-      <div class="cta-card">
+      <div class="cta-card cta-fan-card">
+        <div class="fan-wrap">
+          <div class="f-slot f-left">
+            <img src="images/Banner%20image%202%20reference.jpeg" alt="Transformation result" />
+          </div>
+          <div class="f-slot f-center">
+            <img src="images/Banner%20image%201%20reference.jpeg" alt="Body recomp result" />
+          </div>
+          <div class="f-slot f-right">
+            <img src="images/Conditioning%20finishers%20reference.jpeg" alt="Training result" />
+          </div>
+        </div>
         <a href="https://whop.com/skeletalfitguy/the-6-week-body-recomp-blueprint/" class="cta-btn">Start My Six Week Transformation Today</a>
         <p class="price-row">
           <span class="price-original">$197</span>
@@ -561,6 +598,11 @@
             <span class="price-original">$197</span>
             <span class="price-current">$47 One Time</span>
           </p>
+          <div class="trust-lines">
+            <p>✅ 30-Day Zero Risk Guarantee</p>
+            <p>✅ Built From Published Research</p>
+            <p>✅ Proven Recomp System, Real Results</p>
+          </div>
           <div class="trust-badge-row">
             <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee" />
             <img src="images/secure%20checkout.png" alt="Secure checkout" />
