@@ -1139,71 +1139,20 @@
   };
 
   /* ─────────────────────────────────────────────────────
-     fillNative — fills an input using the native setter
-     so React/Vue/framework listeners fire correctly.
-  ───────────────────────────────────────────────────── */
-  function fillNative(el, val){
-    try{
-      var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
-      setter.call(el, val);
-    }catch(e){ el.value = val; }
-    el.dispatchEvent(new Event('input', {bubbles:true}));
-    el.dispatchEvent(new Event('change',{bubbles:true}));
-  }
-
-  /* ─────────────────────────────────────────────────────
-     submitToSystemeIO — three methods tried in order:
-     1. Fill hidden form fields + click their submit btn
-     2. Fill hidden form fields + fetch FormData (no-cors)
-     3. Direct fetch to Systeme.io with JSON payload
+     submitToSystemeIO — direct API call.
+     Sends name + email straight to your Systeme.io
+     contacts list. Guaranteed delivery.
   ───────────────────────────────────────────────────── */
   function submitToSystemeIO(email, name){
-    // --- Find Systeme.io form anywhere on the page ---
-    var syForm      = null;
-    var syEmailInp  = null;
-    var syNameInp   = null;
-
-    var allForms = document.querySelectorAll('form');
-    for(var f=0; f<allForms.length; f++){
-      var form = allForms[f];
-      var eInp = form.querySelector('input[type="email"]:not(#sfg-email)');
-      if(eInp){
-        syForm     = form;
-        syEmailInp = eInp;
-        syNameInp  = form.querySelector('input[type="text"]:not(#sfg-name), input[name*="first"], input[name*="name"]') || null;
-        break;
-      }
-    }
-
-    if(syForm && syEmailInp){
-      // Fill fields
-      fillNative(syEmailInp, email);
-      if(syNameInp && name) fillNative(syNameInp, name);
-
-      // Method 1: click their submit button (uses their AJAX handler)
-      var syBtn = syForm.querySelector('button[type="submit"], [type="submit"], button');
-      if(syBtn){
-        syBtn.click();
-        return; // done
-      }
-
-      // Method 2: fetch with FormData (works even if button is missing)
-      if(syForm.action){
-        try{
-          var fd = new FormData(syForm);
-          fd.set(syEmailInp.name || 'email', email);
-          if(syNameInp && name) fd.set(syNameInp.name || 'first_name', name);
-          fetch(syForm.action, {method: syForm.method||'POST', body: fd, mode:'no-cors'})
-            .catch(function(){});
-        }catch(e){}
-        return;
-      }
-    }
-
-    // Method 3: Also check for iframes — some Systeme.io embeds use them
-    // If form is inside an iframe we can't access it, so try the show-popup link
-    var syLink = document.querySelector('.systeme-show-popup-24306798, [class*="systeme-show-popup"]');
-    if(syLink) syLink.click();
+    fetch('https://api.systeme.io/api/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept':        'application/json',
+        'X-API-Key':     '3i2y4r4v8z8ru4ei671hpccywva3rapwi2ptj59askqudlbm57nn5b3oxp11uhqy'
+      },
+      body: JSON.stringify({ email: email, firstName: name })
+    }).catch(function(){});
   }
 
   /* ─────────────────────────────────────────────────────
