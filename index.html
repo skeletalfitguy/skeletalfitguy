@@ -821,20 +821,23 @@
 
     <!-- FORM STATE -->
     <div id="sfg-form-state">
-      <h2>WAIT — BEFORE YOU LEAVE</h2>
-      <p class="sfg-sub">Get the <strong>FREE Body Recomp Starter Guide</strong> — the exact first steps to start losing fat and building muscle this week</p>
+      <h2 id="sfg-headline">
+        <span class="sfg-hl-red">JOIN THE<br>SKELETAL</span>
+        <span class="sfg-hl-white">FIT CREW!</span>
+      </h2>
+      <p class="sfg-sub">Get exclusive workouts &amp; tips!</p>
       <input type="email" id="sfg-email"
-        placeholder="Enter your best email address"
+        placeholder="Enter your email"
         autocomplete="email" aria-label="Email address" />
-      <button id="sfg-btn" onclick="sfgSubmit()">SEND ME THE FREE GUIDE &rarr;</button>
-      <p class="sfg-fine">No spam. Unsubscribe anytime.</p>
+      <button id="sfg-btn" onclick="sfgSubmit()">SIGN UP NOW</button>
+      <p class="sfg-brand">Skeletal Fit Guy</p>
     </div>
 
     <!-- SUCCESS STATE -->
     <div id="sfg-done">
       <div class="sfg-tick">&#10003;</div>
       <h2>YOU'RE IN!</h2>
-      <p>Check your inbox — your free guide is on its way.</p>
+      <p>Welcome to the crew!<br>Check your inbox.</p>
     </div>
 
   </div>
@@ -876,47 +879,48 @@
   left:50%;
   transform:translate(-50%,-50%);
   width:92%;
-  max-width:460px;
-  background:#111;
+  max-width:440px;
+  background:#0a0a0a;
   border:2px solid #CC0000;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
   z-index:99999;
-  box-shadow:0 0 60px rgba(204,0,0,0.4),0 24px 70px rgba(0,0,0,0.8);
+  box-shadow:0 0 70px rgba(204,0,0,0.45),0 30px 80px rgba(0,0,0,0.9);
   font-family:'Barlow Condensed',sans-serif;
 }
 
-/* ── Background image + dark overlay ────────────────────── */
+/* ── Background image + gradient overlay ─────────────────── */
+/* Image fills popup; left is darkened for text readability;
+   right stays bright so the skeleton character shows through */
 #sfg-inner {
   position:relative;
-  padding:50px 30px 36px;
-  min-height:360px;
+  padding:38px 0 32px 26px;
+  min-height:520px;
   display:flex;
-  align-items:center;
-  justify-content:center;
-  background:url('images/Email%20optin%20popup%20image.jpeg') center center/cover no-repeat;
+  align-items:flex-start;
+  background:url('images/Email%20optin%20popup%20image.jpeg') right center/cover no-repeat;
 }
 #sfg-inner::before {
   content:'';
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.66);
+  background:linear-gradient(to right, rgba(0,0,0,0.88) 48%, rgba(0,0,0,0.08) 100%);
 }
 #sfg-form-state,#sfg-done {
   position:relative;
   z-index:2;
-  text-align:center;
-  width:100%;
+  text-align:left;
+  width:58%;
 }
 
 /* ── Close button ───────────────────────────────────────── */
 #sfg-close {
   position:absolute;
-  top:11px;
-  right:15px;
+  top:12px;
+  right:14px;
   background:none;
   border:none;
-  color:rgba(255,255,255,0.6);
+  color:rgba(255,255,255,0.7);
   font-size:30px;
   line-height:1;
   cursor:pointer;
@@ -927,81 +931,101 @@
 #sfg-close:hover{color:#fff;}
 
 /* ── Headline ───────────────────────────────────────────── */
-#sfg-form-state h2 {
-  color:#CC0000;
-  font-size:2rem;
-  font-weight:800;
+#sfg-headline {
+  margin:0 0 12px;
+  line-height:0.92;
   letter-spacing:1px;
-  margin:0 0 10px;
-  line-height:1.1;
-  text-shadow:0 2px 12px rgba(204,0,0,0.5);
+}
+.sfg-hl-red {
+  display:block;
+  color:#CC0000;
+  font-size:2.85rem;
+  font-weight:900;
+  text-transform:uppercase;
+  text-shadow:0 0 22px rgba(204,0,0,0.7),0 2px 8px rgba(0,0,0,0.8);
+  line-height:0.95;
+}
+.sfg-hl-white {
+  display:block;
+  color:#fff;
+  font-size:2.85rem;
+  font-weight:900;
+  text-transform:uppercase;
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+  line-height:1.05;
 }
 
 /* ── Sub-text ───────────────────────────────────────────── */
 .sfg-sub {
-  color:#ddd;
-  font-size:1rem;
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:700;
   margin:0 0 18px;
-  line-height:1.45;
-  font-family:'Barlow',sans-serif;
+  line-height:1.35;
+  font-family:'Barlow Condensed',sans-serif;
+  text-shadow:0 1px 6px rgba(0,0,0,0.8);
 }
 .sfg-sub strong{color:#fff;font-weight:700;}
+
+/* ── Brand label ────────────────────────────────────────── */
+.sfg-brand {
+  color:rgba(255,255,255,0.55);
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:0.5px;
+  font-family:'Barlow Condensed',sans-serif;
+  margin:8px 0 0;
+  text-align:center;
+}
 
 /* ── Email input ────────────────────────────────────────── */
 #sfg-email {
   display:block;
   width:100%;
   box-sizing:border-box;
-  padding:13px 16px;
+  padding:14px 16px;
   font-size:1rem;
   font-family:'Barlow',sans-serif;
-  background:rgba(255,255,255,0.08);
-  border:2px solid #CC0000;
-  border-radius:8px;
+  background:rgba(10,10,10,0.55);
+  border:2.5px solid #CC0000;
+  border-radius:10px;
   color:#fff;
   outline:none;
-  margin-bottom:11px;
+  margin-bottom:10px;
   transition:border-color 0.2s,box-shadow 0.2s;
+  box-shadow:0 0 14px rgba(204,0,0,0.55),inset 0 0 8px rgba(204,0,0,0.15);
 }
-#sfg-email::placeholder{color:rgba(255,255,255,0.4);}
+#sfg-email::placeholder{color:rgba(255,255,255,0.55);font-weight:600;}
 #sfg-email:focus {
   border-color:#ff2222;
-  box-shadow:0 0 18px rgba(204,0,0,0.55);
-  background:rgba(255,255,255,0.12);
+  box-shadow:0 0 24px rgba(204,0,0,0.75),inset 0 0 10px rgba(204,0,0,0.2);
 }
 #sfg-email.sfg-err {
   border-color:#ff4444;
-  box-shadow:0 0 16px rgba(255,68,68,0.5);
+  box-shadow:0 0 18px rgba(255,68,68,0.65);
 }
 
 /* ── Submit button ──────────────────────────────────────── */
 #sfg-btn {
   display:block;
   width:100%;
-  padding:15px 10px;
+  padding:16px 10px;
   background:#CC0000;
   color:#fff;
   font-family:'Barlow Condensed',sans-serif;
-  font-size:1.15rem;
-  font-weight:700;
-  letter-spacing:0.5px;
+  font-size:1.3rem;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   cursor:pointer;
-  box-shadow:0 4px 20px rgba(204,0,0,0.5);
-  margin-bottom:10px;
+  box-shadow:0 4px 22px rgba(204,0,0,0.55);
+  margin-bottom:0;
   transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
 }
-#sfg-btn:hover{background:#aa0000;transform:translateY(-1px);box-shadow:0 6px 28px rgba(204,0,0,0.65);}
+#sfg-btn:hover{background:#e00000;transform:translateY(-1px);box-shadow:0 6px 30px rgba(204,0,0,0.7);}
 #sfg-btn:active{transform:translateY(0);}
-
-/* ── Disclaimer ─────────────────────────────────────────── */
-.sfg-fine {
-  color:rgba(255,255,255,0.38);
-  font-size:0.78rem;
-  margin:0;
-  font-family:'Barlow',sans-serif;
-}
 
 /* ── Success state ──────────────────────────────────────── */
 #sfg-done{display:none;}
@@ -1011,16 +1035,17 @@
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-size:2.2rem;color:#fff;
-  margin:0 auto 16px;
+  margin:0 0 16px;
   box-shadow:0 0 32px rgba(204,0,0,0.55);
 }
 #sfg-done h2{color:#fff;font-size:2rem;font-weight:800;margin:0 0 10px;letter-spacing:1px;}
-#sfg-done p{color:#ccc;font-size:1rem;font-family:'Barlow',sans-serif;margin:0;}
+#sfg-done p{color:#ccc;font-size:0.95rem;font-family:'Barlow',sans-serif;margin:0;line-height:1.4;}
 
 /* ── Mobile ─────────────────────────────────────────────── */
 @media(max-width:480px){
-  #sfg-inner{padding:44px 20px 30px;}
-  #sfg-form-state h2{font-size:1.65rem;}
+  #sfg-inner{padding:34px 0 28px 20px;min-height:480px;}
+  #sfg-form-state,#sfg-done{width:62%;}
+  .sfg-hl-red,.sfg-hl-white{font-size:2.3rem;}
 }
 </style>
 
