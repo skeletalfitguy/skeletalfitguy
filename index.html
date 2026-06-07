@@ -799,6 +799,374 @@
     <p>Copyright 2026 Skeletal Fit Guy. All Rights Reserved.</p>
   </footer>
 
+<!-- ===================================================
+     EMAIL POPUP + SYSTEME.IO FORM INTEGRATION
+     Script loads silently. Custom popup appears after
+     5 seconds. On submit, email is piped through the
+     hidden Systeme.io form → goes into contacts/lists.
+=================================================== -->
+
+<!-- 1 ─ SYSTEME.IO FORM EMBED SCRIPT (runs in background) -->
+<script id="form-script-tag-24306798"
+  src="https://skeletalfitguy.systeme.io/public/remote/page/41561819a55026c2e9bf4373074c13d9bee78808.js">
+</script>
+
+<!-- 2 ─ OVERLAY -->
+<div id="sfg-overlay" onclick="closeSFGPopup()"></div>
+
+<!-- 3 ─ POPUP -->
+<div id="sfg-popup" role="dialog" aria-modal="true" aria-label="Free guide offer">
+  <button id="sfg-close" onclick="closeSFGPopup()" aria-label="Close">&times;</button>
+  <div id="sfg-inner">
+
+    <!-- FORM STATE -->
+    <div id="sfg-form-state">
+      <h2>WAIT — BEFORE YOU LEAVE</h2>
+      <p class="sfg-sub">Get the <strong>FREE Body Recomp Starter Guide</strong> — the exact first steps to start losing fat and building muscle this week</p>
+      <input type="email" id="sfg-email"
+        placeholder="Enter your best email address"
+        autocomplete="email" aria-label="Email address" />
+      <button id="sfg-btn" onclick="sfgSubmit()">SEND ME THE FREE GUIDE &rarr;</button>
+      <p class="sfg-fine">No spam. Unsubscribe anytime.</p>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="sfg-done">
+      <div class="sfg-tick">&#10003;</div>
+      <h2>YOU'RE IN!</h2>
+      <p>Check your inbox — your free guide is on its way.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- 4 ─ POPUP STYLES -->
+<style>
+/* ── Hide Systeme.io's default form widget ──────────────── */
+/* We keep their form in the DOM for submission but hide it */
+[id^="sysge"],[class^="sysge"],
+[id^="systeme"],[class^="systeme"],
+[id*="24306798"],[class*="24306798"],
+.sy-form-container,.sy-opt-in {
+  position:absolute!important;
+  left:-9999px!important;
+  top:-9999px!important;
+  width:1px!important;
+  height:1px!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+
+/* ── Overlay ─────────────────────────────────────────────── */
+#sfg-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.78);
+  z-index:99998;
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+
+/* ── Popup shell ─────────────────────────────────────────── */
+#sfg-popup {
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:92%;
+  max-width:460px;
+  background:#111;
+  border:2px solid #CC0000;
+  border-radius:14px;
+  overflow:hidden;
+  z-index:99999;
+  box-shadow:0 0 60px rgba(204,0,0,0.4),0 24px 70px rgba(0,0,0,0.8);
+  font-family:'Barlow Condensed',sans-serif;
+}
+
+/* ── Background image + dark overlay ────────────────────── */
+#sfg-inner {
+  position:relative;
+  padding:50px 30px 36px;
+  min-height:360px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:url('images/Email%20optin%20popup%20image.jpeg') center center/cover no-repeat;
+}
+#sfg-inner::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.66);
+}
+#sfg-form-state,#sfg-done {
+  position:relative;
+  z-index:2;
+  text-align:center;
+  width:100%;
+}
+
+/* ── Close button ───────────────────────────────────────── */
+#sfg-close {
+  position:absolute;
+  top:11px;
+  right:15px;
+  background:none;
+  border:none;
+  color:rgba(255,255,255,0.6);
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+  z-index:100000;
+  padding:0 5px;
+  transition:color 0.2s;
+}
+#sfg-close:hover{color:#fff;}
+
+/* ── Headline ───────────────────────────────────────────── */
+#sfg-form-state h2 {
+  color:#CC0000;
+  font-size:2rem;
+  font-weight:800;
+  letter-spacing:1px;
+  margin:0 0 10px;
+  line-height:1.1;
+  text-shadow:0 2px 12px rgba(204,0,0,0.5);
+}
+
+/* ── Sub-text ───────────────────────────────────────────── */
+.sfg-sub {
+  color:#ddd;
+  font-size:1rem;
+  margin:0 0 18px;
+  line-height:1.45;
+  font-family:'Barlow',sans-serif;
+}
+.sfg-sub strong{color:#fff;font-weight:700;}
+
+/* ── Email input ────────────────────────────────────────── */
+#sfg-email {
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:13px 16px;
+  font-size:1rem;
+  font-family:'Barlow',sans-serif;
+  background:rgba(255,255,255,0.08);
+  border:2px solid #CC0000;
+  border-radius:8px;
+  color:#fff;
+  outline:none;
+  margin-bottom:11px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+#sfg-email::placeholder{color:rgba(255,255,255,0.4);}
+#sfg-email:focus {
+  border-color:#ff2222;
+  box-shadow:0 0 18px rgba(204,0,0,0.55);
+  background:rgba(255,255,255,0.12);
+}
+#sfg-email.sfg-err {
+  border-color:#ff4444;
+  box-shadow:0 0 16px rgba(255,68,68,0.5);
+}
+
+/* ── Submit button ──────────────────────────────────────── */
+#sfg-btn {
+  display:block;
+  width:100%;
+  padding:15px 10px;
+  background:#CC0000;
+  color:#fff;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.15rem;
+  font-weight:700;
+  letter-spacing:0.5px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(204,0,0,0.5);
+  margin-bottom:10px;
+  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
+}
+#sfg-btn:hover{background:#aa0000;transform:translateY(-1px);box-shadow:0 6px 28px rgba(204,0,0,0.65);}
+#sfg-btn:active{transform:translateY(0);}
+
+/* ── Disclaimer ─────────────────────────────────────────── */
+.sfg-fine {
+  color:rgba(255,255,255,0.38);
+  font-size:0.78rem;
+  margin:0;
+  font-family:'Barlow',sans-serif;
+}
+
+/* ── Success state ──────────────────────────────────────── */
+#sfg-done{display:none;}
+.sfg-tick {
+  width:64px;height:64px;
+  background:#CC0000;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;color:#fff;
+  margin:0 auto 16px;
+  box-shadow:0 0 32px rgba(204,0,0,0.55);
+}
+#sfg-done h2{color:#fff;font-size:2rem;font-weight:800;margin:0 0 10px;letter-spacing:1px;}
+#sfg-done p{color:#ccc;font-size:1rem;font-family:'Barlow',sans-serif;margin:0;}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media(max-width:480px){
+  #sfg-inner{padding:44px 20px 30px;}
+  #sfg-form-state h2{font-size:1.65rem;}
+}
+</style>
+
+<!-- 5 ─ POPUP JAVASCRIPT -->
+<script>
+(function(){
+  'use strict';
+
+  var syEmailEl = null;   // reference to Systeme.io's hidden email input
+  var syFormEl  = null;   // reference to Systeme.io's hidden form
+
+  /* ─────────────────────────────────────────────────────
+     MutationObserver
+     Watches for the form injected by the Systeme.io script.
+     Captures a reference to its email field, then
+     pushes the whole widget off-screen.
+  ───────────────────────────────────────────────────── */
+  var sfgWatcher = new MutationObserver(function(mutations){
+    for(var i=0;i<mutations.length;i++){
+      var nodes = mutations[i].addedNodes;
+      for(var j=0;j<nodes.length;j++){
+        var node = nodes[j];
+        if(node.nodeType!==1) continue;
+        // Skip our own popup elements
+        if(node.id==='sfg-popup'||node.id==='sfg-overlay') continue;
+
+        // Search inside the added node for any email input that isn't ours
+        var found = node.querySelectorAll
+          ? node.querySelectorAll('input[type="email"]:not(#sfg-email)')
+          : [];
+
+        if(found.length && !syEmailEl){
+          syEmailEl = found[0];
+          syFormEl  = syEmailEl.closest('form');
+          // Push the widget off-screen (stays in DOM so we can submit it)
+          node.style.setProperty('position','absolute','important');
+          node.style.setProperty('left','-9999px','important');
+          node.style.setProperty('top','-9999px','important');
+          node.style.setProperty('width','1px','important');
+          node.style.setProperty('height','1px','important');
+          node.style.setProperty('overflow','hidden','important');
+          node.setAttribute('aria-hidden','true');
+        }
+
+        // Handle case where the node itself is the email input
+        if(node.tagName==='INPUT'&&node.type==='email'&&node.id!=='sfg-email'&&!syEmailEl){
+          syEmailEl = node;
+          syFormEl  = node.closest('form');
+        }
+      }
+    }
+  });
+  sfgWatcher.observe(document.body,{childList:true,subtree:true});
+
+  /* ─────────────────────────────────────────────────────
+     Show popup 5 seconds after page load, once per session
+  ───────────────────────────────────────────────────── */
+  setTimeout(function(){
+    if(!sessionStorage.getItem('sfg_shown')){
+      sfgOpen();
+    }
+  }, 5000);
+
+  /* ─────────────────────────────────────────────────────
+     Open / Close
+  ───────────────────────────────────────────────────── */
+  window.sfgOpen = function(){
+    document.getElementById('sfg-overlay').style.display = 'block';
+    document.getElementById('sfg-popup').style.display   = 'block';
+    sessionStorage.setItem('sfg_shown','1');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeSFGPopup = function(){
+    document.getElementById('sfg-overlay').style.display = 'none';
+    document.getElementById('sfg-popup').style.display   = 'none';
+    document.body.style.overflow = '';
+  };
+
+  /* ─────────────────────────────────────────────────────
+     Submit
+     1. Validate email
+     2. Fill Systeme.io's hidden email field
+     3. Click their submit button so their AJAX handler
+        fires and email lands in your contacts/lists
+     4. Show success, auto-close after 3 s
+  ───────────────────────────────────────────────────── */
+  window.sfgSubmit = function(){
+    var inp   = document.getElementById('sfg-email');
+    var email = inp.value.trim();
+
+    // Validation
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+      inp.classList.add('sfg-err');
+      inp.placeholder = 'Please enter a valid email';
+      inp.focus();
+      setTimeout(function(){inp.classList.remove('sfg-err');},2000);
+      return;
+    }
+
+    // Fallback lookup if watcher hadn't caught the field yet
+    if(!syEmailEl){
+      var all = document.querySelectorAll('input[type="email"]:not(#sfg-email)');
+      if(all.length){ syEmailEl = all[0]; syFormEl = syEmailEl.closest('form'); }
+    }
+
+    if(syEmailEl){
+      // Fill using the native property setter so React/framework listeners fire
+      try{
+        var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
+        setter.call(syEmailEl, email);
+      }catch(e){ syEmailEl.value = email; }
+
+      syEmailEl.dispatchEvent(new Event('input', {bubbles:true}));
+      syEmailEl.dispatchEvent(new Event('change',{bubbles:true}));
+
+      // Trigger Systeme.io's own submit handler (AJAX → goes to your contacts list)
+      var syBtn = syFormEl && (
+        syFormEl.querySelector('button[type="submit"]') ||
+        syFormEl.querySelector('[type="submit"]') ||
+        syFormEl.querySelector('button')
+      );
+      if(syBtn){
+        syBtn.click();
+      } else if(syFormEl){
+        syFormEl.submit();
+      }
+    }
+
+    // Show success
+    document.getElementById('sfg-form-state').style.display = 'none';
+    document.getElementById('sfg-done').style.display       = 'block';
+
+    // Auto-close after 3 seconds
+    setTimeout(function(){ closeSFGPopup(); }, 3000);
+  };
+
+  /* ─────────────────────────────────────────────────────
+     Enter key shortcut
+  ───────────────────────────────────────────────────── */
+  document.getElementById('sfg-email').addEventListener('keydown',function(e){
+    if(e.key==='Enter') sfgSubmit();
+  });
+
+})();
+</script>
 
 </body>
 </html>
