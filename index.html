@@ -128,12 +128,13 @@
     }
 
     /* ===== FAN IMAGE DISPLAY ===== */
-    .cta-fan-card { padding-top: 0 !important; overflow: hidden; }
+    .cta-fan-card { padding-top: 0 !important; }
     .fan-wrap {
       position: relative;
-      height: 310px;
-      margin: 0 -20px 30px -20px;
+      height: 340px;
+      margin: 0 -20px 36px -20px;
       background: #e8e8e8;
+      overflow: hidden; /* clips the rotated side-image corners — prevents CTA overlap */
     }
     .f-slot {
       position: absolute;
@@ -141,23 +142,24 @@
       border-radius: 10px;
     }
     .f-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* All images anchored to the BOTTOM of fan-wrap so they fan upward cleanly */
     .f-center {
-      width: 60%; height: 285px;
-      left: 50%; top: 14px;
+      width: 60%; height: 300px;
+      left: 50%; bottom: 0;
       transform: translateX(-50%);
       z-index: 3;
       box-shadow: 0 8px 28px rgba(0,0,0,0.35);
     }
     .f-left {
-      width: 54%; height: 268px;
-      right: 44%; top: 22px;
+      width: 54%; height: 280px;
+      right: 43%; bottom: 0;
       transform: rotate(-22deg);
       transform-origin: bottom right;
       z-index: 1;
     }
     .f-right {
-      width: 54%; height: 268px;
-      left: 44%; top: 22px;
+      width: 54%; height: 280px;
+      left: 43%; bottom: 0;
       transform: rotate(22deg);
       transform-origin: bottom left;
       z-index: 1;
@@ -434,13 +436,13 @@
       <div class="cta-card cta-fan-card">
         <div class="fan-wrap">
           <div class="f-slot f-left">
-            <img src="images/Banner%20image%202%20reference.jpeg" alt="Transformation result" />
+            <img src="images/Banner%20image%202%20reference.jpeg" alt="Transformation result"  loading="lazy" />
           </div>
           <div class="f-slot f-center">
-            <img src="images/Banner%20image%201%20reference.jpeg" alt="Body recomp result" />
+            <img src="images/Banner%20image%201%20reference.jpeg" alt="Body recomp result"  loading="lazy" />
           </div>
           <div class="f-slot f-right">
-            <img src="images/Conditioning%20finishers%20reference.jpeg" alt="Training result" />
+            <img src="images/Conditioning%20finishers%20reference.jpeg" alt="Training result"  loading="lazy" />
           </div>
         </div>
         <a href="https://whop.com/skeletalfitguy/the-6-week-body-recomp-blueprint/" class="cta-btn">Start My Six Week Transformation Today</a>
@@ -452,8 +454,8 @@
         <img class="payment-img" src="images/Payment%20method%20Strip.png" alt="Accepted payment methods" />
         <p class="instant-access-line">No Waiting. Instant Access. Start Today.</p>
         <div class="trust-badge-row">
-          <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee" />
-          <img src="images/secure%20checkout.png" alt="Secure checkout" />
+          <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee"  loading="lazy" />
+          <img src="images/secure%20checkout.png" alt="Secure checkout"  loading="lazy" />
         </div>
       </div>
     </div>
@@ -510,8 +512,8 @@
           <p>✅ Proven Recomp System, Real Results</p>
         </div>
         <div class="trust-badge-row">
-          <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee" />
-          <img src="images/secure%20checkout.png" alt="Secure checkout" />
+          <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee"  loading="lazy" />
+          <img src="images/secure%20checkout.png" alt="Secure checkout"  loading="lazy" />
         </div>
       </div>
     </div>
@@ -527,7 +529,7 @@
 
         <div class="alt-block">
           <div class="block-img">
-            <img src="images/GARTHE%202011%20RESEARCH%20REFERENCE.jpeg" alt="Garthe 2011 study" />
+            <img src="images/GARTHE%202011%20RESEARCH%20REFERENCE.jpeg" alt="Garthe 2011 study"  loading="lazy" />
           </div>
           <div class="block-text research-block-text">
             <strong>Garthe et al. 2011</strong> — Athletes losing weight at a slow controlled deficit gained 2.1% lean body mass while losing 31% of their fat mass. Athletes on an aggressive deficit gained zero lean mass. Same training. Different deficit. Completely different results.
@@ -536,7 +538,7 @@
 
         <div class="alt-block img-right">
           <div class="block-img">
-            <img src="images/LONGLAND%202016%20RESEARCH%20REFERENCE.jpeg" alt="Longland 2016 study" />
+            <img src="images/LONGLAND%202016%20RESEARCH%20REFERENCE.jpeg" alt="Longland 2016 study"  loading="lazy" />
           </div>
           <div class="block-text research-block-text">
             <strong>Longland et al. 2016</strong> — Men eating at a calorie deficit with high protein intake lost fat and gained muscle simultaneously. The group with adequate protein built muscle while burning fat. The group without lost muscle alongside fat. Same deficit. Protein was the only variable.
@@ -545,7 +547,7 @@
 
         <div class="alt-block">
           <div class="block-img">
-            <img src="images/NEDELTCHEVA%202010%20RESEARCH%20REFERENCE.jpeg" alt="Nedeltcheva 2010 study" />
+            <img src="images/NEDELTCHEVA%202010%20RESEARCH%20REFERENCE.jpeg" alt="Nedeltcheva 2010 study"  loading="lazy" />
           </div>
           <div class="block-text research-block-text">
             <strong>Nedeltcheva et al. 2010</strong> — Dieters sleeping 5.5 hours lost significantly less fat and significantly more muscle compared to those sleeping 8.5 hours. In identical calorie deficits. Sleep alone determined whether they lost fat or muscle.
@@ -565,7 +567,7 @@
 
         <div class="alt-block img-right pas-problem">
           <div class="block-img">
-            <img src="images/PAS%20PROBLEM%20REFERENCE%201.jpeg" alt="The problem" />
+            <img src="images/PAS%20PROBLEM%20REFERENCE%201.jpeg" alt="The problem"  loading="lazy" />
           </div>
           <div class="block-text">
             You did everything right. You bulked. You trained hard. You cut. You started over. After months of work, the mirror still tells the same story. A little more fat than you wanted. A little less muscle than you expected. And somewhere in the back of your mind, you started wondering if you were just not built for this.
@@ -574,7 +576,7 @@
 
         <div class="alt-block pas-agitation">
           <div class="block-img">
-            <img src="images/PAS%20AGITATION%20REFERENCE.jpeg" alt="The agitation" />
+            <img src="images/PAS%20AGITATION%20REFERENCE.jpeg" alt="The agitation"  loading="lazy" />
           </div>
           <div class="block-text">
             The bulk and cut model was never built for natural men. It was built for enhanced athletes. When a natural man bulks, 30 to 50 percent of the weight gained is pure fat. When he cuts, he loses a big portion of the muscle he just spent months building. After one full cycle lasting six months to a year, the average natural man ends up with maybe two to three pounds of actual muscle to show for it. Then the cycle repeats.
@@ -583,7 +585,7 @@
 
         <div class="alt-block img-right pas-solution">
           <div class="block-img">
-            <img src="images/PAS%20SOLUTION%20REFERENCE.jpeg" alt="The solution" />
+            <img src="images/PAS%20SOLUTION%20REFERENCE.jpeg" alt="The solution"  loading="lazy" />
           </div>
           <div class="block-text">
             The 6-Week Body Recomp Blueprint is built from published research, not gym myths. Right deficit. Right protein. Right progressive overload. Your body burns stored fat for energy and builds new muscle at the same time. No bulk. No cut. No starting over. Both happening together in six weeks. This is not a promise. This is what the science actually says.
@@ -604,8 +606,8 @@
             <p>✅ Proven Recomp System, Real Results</p>
           </div>
           <div class="trust-badge-row">
-            <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee" />
-            <img src="images/secure%20checkout.png" alt="Secure checkout" />
+            <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee"  loading="lazy" />
+            <img src="images/secure%20checkout.png" alt="Secure checkout"  loading="lazy" />
           </div>
         </div>
       </div>
@@ -622,7 +624,7 @@
 
         <div class="alt-block">
           <div class="block-img">
-            <img src="images/Trainiing%20System%20reference.jpeg" alt="6-Week Training System" />
+            <img src="images/Trainiing%20System%20reference.jpeg" alt="6-Week Training System"  loading="lazy" />
           </div>
           <div class="block-text">
             <div class="block-title">The 6-Week Training System</div>
@@ -632,7 +634,7 @@
 
         <div class="alt-block img-right">
           <div class="block-img">
-            <img src="images/Nutrition%20framework%20reference.jpeg" alt="Nutrition Framework" />
+            <img src="images/Nutrition%20framework%20reference.jpeg" alt="Nutrition Framework"  loading="lazy" />
           </div>
           <div class="block-text">
             <div class="block-title">Nutrition Framework</div>
@@ -642,7 +644,7 @@
 
         <div class="alt-block">
           <div class="block-img">
-            <img src="images/Progressive%20overload%20reference.jpeg" alt="Progressive Overload System" />
+            <img src="images/Progressive%20overload%20reference.jpeg" alt="Progressive Overload System"  loading="lazy" />
           </div>
           <div class="block-text">
             <div class="block-title">Progressive Overload System</div>
@@ -652,7 +654,7 @@
 
         <div class="alt-block img-right">
           <div class="block-img">
-            <img src="images/Conditioning%20finishers%20reference.jpeg" alt="Conditioning Finishers" />
+            <img src="images/Conditioning%20finishers%20reference.jpeg" alt="Conditioning Finishers"  loading="lazy" />
           </div>
           <div class="block-text">
             <div class="block-title">Conditioning Finishers</div>
@@ -664,7 +666,7 @@
 
         <div class="alt-block">
           <div class="block-img">
-            <img src="images/Common%20mistakes%20reference.jpeg" alt="Common Mistakes and How to Fix Them" />
+            <img src="images/Common%20mistakes%20reference.jpeg" alt="Common Mistakes and How to Fix Them"  loading="lazy" />
           </div>
           <div class="block-text">
             <div class="block-title">Bonus 1 — Common Mistakes and How to Fix Them</div>
@@ -674,7 +676,7 @@
 
         <div class="alt-block img-right">
           <div class="block-img">
-            <img src="images/Stall%20breaking%20protocol%20reference.jpeg" alt="Stall Breaking Protocol" />
+            <img src="images/Stall%20breaking%20protocol%20reference.jpeg" alt="Stall Breaking Protocol"  loading="lazy" />
           </div>
           <div class="block-text">
             <div class="block-title">Bonus 2 — The Stall Breaking Protocol</div>
@@ -784,8 +786,8 @@
           <p>✅ Proven Recomp System, Real Results</p>
         </div>
         <div class="trust-badge-row">
-          <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee" />
-          <img src="images/secure%20checkout.png" alt="Secure checkout" />
+          <img src="images/1%20money%20back%20guarantee.png" alt="30-day money back guarantee"  loading="lazy" />
+          <img src="images/secure%20checkout.png" alt="Secure checkout"  loading="lazy" />
         </div>
       </div>
     </div>
@@ -826,6 +828,9 @@
         <span class="sfg-hl-white">FIT CREW!</span>
       </h2>
       <p class="sfg-sub">Get exclusive workouts &amp; tips!</p>
+      <input type="text" id="sfg-name"
+        placeholder="Enter your first name"
+        autocomplete="given-name" aria-label="First name" />
       <input type="email" id="sfg-email"
         placeholder="Enter your email"
         autocomplete="email" aria-label="Email address" />
@@ -978,7 +983,34 @@
   text-align:center;
 }
 
-/* ── Email input ────────────────────────────────────────── */
+/* ── Name input ─────────────────────────────────────────── */
+#sfg-name {
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:14px 16px;
+  font-size:1rem;
+  font-family:'Barlow',sans-serif;
+  background:rgba(10,10,10,0.55);
+  border:2.5px solid #CC0000;
+  border-radius:10px;
+  color:#fff;
+  outline:none;
+  margin-bottom:10px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  box-shadow:0 0 14px rgba(204,0,0,0.55),inset 0 0 8px rgba(204,0,0,0.15);
+}
+#sfg-name::placeholder{color:rgba(255,255,255,0.55);font-weight:600;}
+#sfg-name:focus {
+  border-color:#ff2222;
+  box-shadow:0 0 24px rgba(204,0,0,0.75),inset 0 0 10px rgba(204,0,0,0.2);
+}
+#sfg-name.sfg-err {
+  border-color:#ff4444;
+  box-shadow:0 0 18px rgba(255,68,68,0.65);
+}
+
+/* ── Email input ─────────────────────────────────────────── */
 #sfg-email {
   display:block;
   width:100%;
@@ -1054,14 +1086,9 @@
 (function(){
   'use strict';
 
-  var syEmailEl = null;   // reference to Systeme.io's hidden email input
-  var syFormEl  = null;   // reference to Systeme.io's hidden form
-
   /* ─────────────────────────────────────────────────────
-     MutationObserver
-     Watches for the form injected by the Systeme.io script.
-     Captures a reference to its email field, then
-     pushes the whole widget off-screen.
+     MutationObserver — finds the form Systeme.io injects
+     and pushes it off-screen while keeping it in the DOM.
   ───────────────────────────────────────────────────── */
   var sfgWatcher = new MutationObserver(function(mutations){
     for(var i=0;i<mutations.length;i++){
@@ -1069,18 +1096,10 @@
       for(var j=0;j<nodes.length;j++){
         var node = nodes[j];
         if(node.nodeType!==1) continue;
-        // Skip our own popup elements
-        if(node.id==='sfg-popup'||node.id==='sfg-overlay') continue;
-
-        // Search inside the added node for any email input that isn't ours
-        var found = node.querySelectorAll
-          ? node.querySelectorAll('input[type="email"]:not(#sfg-email)')
-          : [];
-
-        if(found.length && !syEmailEl){
-          syEmailEl = found[0];
-          syFormEl  = syEmailEl.closest('form');
-          // Push the widget off-screen (stays in DOM so we can submit it)
+        if(node.id==='sfg-popup'||node.id==='sfg-overlay'||node.id==='sfg-name'||node.id==='sfg-email') continue;
+        // If node contains a Systeme.io form — push off-screen
+        var hasEmail = node.querySelectorAll && node.querySelectorAll('input[type="email"]:not(#sfg-email)').length > 0;
+        if(hasEmail){
           node.style.setProperty('position','absolute','important');
           node.style.setProperty('left','-9999px','important');
           node.style.setProperty('top','-9999px','important');
@@ -1089,25 +1108,19 @@
           node.style.setProperty('overflow','hidden','important');
           node.setAttribute('aria-hidden','true');
         }
-
-        // Handle case where the node itself is the email input
-        if(node.tagName==='INPUT'&&node.type==='email'&&node.id!=='sfg-email'&&!syEmailEl){
-          syEmailEl = node;
-          syFormEl  = node.closest('form');
-        }
       }
     }
   });
   sfgWatcher.observe(document.body,{childList:true,subtree:true});
 
   /* ─────────────────────────────────────────────────────
-     Show popup 5 seconds after page load, once per session
+     Show popup 10 seconds after page load, once per session
   ───────────────────────────────────────────────────── */
   setTimeout(function(){
     if(!sessionStorage.getItem('sfg_shown')){
       sfgOpen();
     }
-  }, 5000);
+  }, 10000);
 
   /* ─────────────────────────────────────────────────────
      Open / Close
@@ -1126,56 +1139,103 @@
   };
 
   /* ─────────────────────────────────────────────────────
-     Submit
-     1. Validate email
-     2. Fill Systeme.io's hidden email field
-     3. Click their submit button so their AJAX handler
-        fires and email lands in your contacts/lists
-     4. Show success, auto-close after 3 s
+     fillNative — fills an input using the native setter
+     so React/Vue/framework listeners fire correctly.
   ───────────────────────────────────────────────────── */
-  window.sfgSubmit = function(){
-    var inp   = document.getElementById('sfg-email');
-    var email = inp.value.trim();
+  function fillNative(el, val){
+    try{
+      var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
+      setter.call(el, val);
+    }catch(e){ el.value = val; }
+    el.dispatchEvent(new Event('input', {bubbles:true}));
+    el.dispatchEvent(new Event('change',{bubbles:true}));
+  }
 
-    // Validation
-    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
-      inp.classList.add('sfg-err');
-      inp.placeholder = 'Please enter a valid email';
-      inp.focus();
-      setTimeout(function(){inp.classList.remove('sfg-err');},2000);
-      return;
-    }
+  /* ─────────────────────────────────────────────────────
+     submitToSystemeIO — three methods tried in order:
+     1. Fill hidden form fields + click their submit btn
+     2. Fill hidden form fields + fetch FormData (no-cors)
+     3. Direct fetch to Systeme.io with JSON payload
+  ───────────────────────────────────────────────────── */
+  function submitToSystemeIO(email, name){
+    // --- Find Systeme.io form anywhere on the page ---
+    var syForm      = null;
+    var syEmailInp  = null;
+    var syNameInp   = null;
 
-    // Fallback lookup if watcher hadn't caught the field yet
-    if(!syEmailEl){
-      var all = document.querySelectorAll('input[type="email"]:not(#sfg-email)');
-      if(all.length){ syEmailEl = all[0]; syFormEl = syEmailEl.closest('form'); }
-    }
-
-    if(syEmailEl){
-      // Fill using the native property setter so React/framework listeners fire
-      try{
-        var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
-        setter.call(syEmailEl, email);
-      }catch(e){ syEmailEl.value = email; }
-
-      syEmailEl.dispatchEvent(new Event('input', {bubbles:true}));
-      syEmailEl.dispatchEvent(new Event('change',{bubbles:true}));
-
-      // Trigger Systeme.io's own submit handler (AJAX → goes to your contacts list)
-      var syBtn = syFormEl && (
-        syFormEl.querySelector('button[type="submit"]') ||
-        syFormEl.querySelector('[type="submit"]') ||
-        syFormEl.querySelector('button')
-      );
-      if(syBtn){
-        syBtn.click();
-      } else if(syFormEl){
-        syFormEl.submit();
+    var allForms = document.querySelectorAll('form');
+    for(var f=0; f<allForms.length; f++){
+      var form = allForms[f];
+      var eInp = form.querySelector('input[type="email"]:not(#sfg-email)');
+      if(eInp){
+        syForm     = form;
+        syEmailInp = eInp;
+        syNameInp  = form.querySelector('input[type="text"]:not(#sfg-name), input[name*="first"], input[name*="name"]') || null;
+        break;
       }
     }
 
-    // Show success
+    if(syForm && syEmailInp){
+      // Fill fields
+      fillNative(syEmailInp, email);
+      if(syNameInp && name) fillNative(syNameInp, name);
+
+      // Method 1: click their submit button (uses their AJAX handler)
+      var syBtn = syForm.querySelector('button[type="submit"], [type="submit"], button');
+      if(syBtn){
+        syBtn.click();
+        return; // done
+      }
+
+      // Method 2: fetch with FormData (works even if button is missing)
+      if(syForm.action){
+        try{
+          var fd = new FormData(syForm);
+          fd.set(syEmailInp.name || 'email', email);
+          if(syNameInp && name) fd.set(syNameInp.name || 'first_name', name);
+          fetch(syForm.action, {method: syForm.method||'POST', body: fd, mode:'no-cors'})
+            .catch(function(){});
+        }catch(e){}
+        return;
+      }
+    }
+
+    // Method 3: Also check for iframes — some Systeme.io embeds use them
+    // If form is inside an iframe we can't access it, so try the show-popup link
+    var syLink = document.querySelector('.systeme-show-popup-24306798, [class*="systeme-show-popup"]');
+    if(syLink) syLink.click();
+  }
+
+  /* ─────────────────────────────────────────────────────
+     sfgSubmit — validate → submit → show success
+  ───────────────────────────────────────────────────── */
+  window.sfgSubmit = function(){
+    var nameEl  = document.getElementById('sfg-name');
+    var emailEl = document.getElementById('sfg-email');
+    var name    = nameEl.value.trim();
+    var email   = emailEl.value.trim();
+
+    // Validate name
+    if(!name){
+      nameEl.classList.add('sfg-err');
+      nameEl.placeholder = 'Please enter your first name';
+      nameEl.focus();
+      setTimeout(function(){nameEl.classList.remove('sfg-err');},2000);
+      return;
+    }
+    // Validate email
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+      emailEl.classList.add('sfg-err');
+      emailEl.placeholder = 'Please enter a valid email';
+      emailEl.focus();
+      setTimeout(function(){emailEl.classList.remove('sfg-err');},2000);
+      return;
+    }
+
+    // Submit to Systeme.io in background
+    submitToSystemeIO(email, name);
+
+    // Show success state
     document.getElementById('sfg-form-state').style.display = 'none';
     document.getElementById('sfg-done').style.display       = 'block';
 
@@ -1184,10 +1244,12 @@
   };
 
   /* ─────────────────────────────────────────────────────
-     Enter key shortcut
+     Enter key on either input triggers submit
   ───────────────────────────────────────────────────── */
-  document.getElementById('sfg-email').addEventListener('keydown',function(e){
-    if(e.key==='Enter') sfgSubmit();
+  ['sfg-name','sfg-email'].forEach(function(id){
+    document.getElementById(id).addEventListener('keydown',function(e){
+      if(e.key==='Enter') sfgSubmit();
+    });
   });
 
 })();
